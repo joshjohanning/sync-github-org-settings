@@ -1,0 +1,69 @@
+name: Sync Org Settings
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 2 * * 1' # Weekly, Monday at 2am UTC
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Dry run (preview changes without applying)'
+        type: boolean
+        default: false
+
+jobs:
+  sync:
+    name: Sync Organization Settings
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: joshjohanning-org
+
+      - name: Sync Organization Settings
+        uses: joshjohanning/bulk-github-org-settings-sync-action@v1
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          organizations-file: './orgs.yml'
+          custom-repo-roles-file: './custom-repo-roles.yml'
+          actions-policy-allowed-actions: selected
+          actions-policy-github-owned-allowed: true
+          actions-policy-verified-allowed: true
+          actions-allow-list-file: './actions-allow-list.yml'
+          actions-policy-default-workflow-permissions: read
+          actions-policy-actions-can-approve-pull-request-reviews: false
+          org-description: "josh's samples"
+          org-location: 'United States of America'
+          org-blog: 'https://josh-ops.com'
+          default-repository-permission: none
+          members-can-create-repositories: false
+          members-can-create-public-repositories: false
+          members-can-create-private-repositories: false
+          members-can-fork-private-repositories: true
+          web-commit-signoff-required: false
+          members-can-create-pages: true
+          members-can-create-public-pages: true
+          members-can-create-private-pages: true
+          members-can-invite-outside-collaborators: true
+          members-can-create-teams: true
+          members-can-delete-repositories: true
+          members-can-change-repo-visibility: true
+          members-can-delete-issues: true
+          default-repository-branch: main
+          deploy-keys-enabled-for-repositories: true
+          readers-can-create-discussions: true
+          members-can-view-dependency-insights: true
+          display-commenter-full-name-setting-enabled: true
+          dry-run: ${{ inputs.dry-run || 'false' }}
