@@ -31,7 +31,7 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ vars.APP_CLIENT_ID }}
+          client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: joshjohanning-org
 
@@ -47,7 +47,7 @@ jobs:
           actions-allow-list-file: './actions-allow-list.yml'
           actions-policy-default-workflow-permissions: read
           actions-policy-actions-can-approve-pull-request-reviews: false
-          org-description: "josh's samples"
+          org-description: "@joshjohanning's samples"
           org-location: 'United States of America'
           org-blog: 'https://josh-ops.com'
           default-repository-permission: none
