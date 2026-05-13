@@ -1,0 +1,45 @@
+name: Sync Org Settings
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Dry run (preview changes without applying)'
+        type: boolean
+        default: true
+
+jobs:
+  sync:
+    name: Sync Organization Settings
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: install prettier
+        run: npm install -g prettier
+
+      - name: run prettier
+        run: npx prettier --check .
+
+      - name: Generate GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: joshjohanning-org
+
+      - name: Sync Organization Settings
+        uses: joshjohanning/bulk-github-org-settings-sync-action@v1
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          organizations-file: './orgs.yml'
+          dry-run: ${{ github.event_name == 'pull_request' || inputs.dry-run == true }}
