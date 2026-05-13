@@ -12,7 +12,7 @@
     - view_secret_scanning_alerts
 
 - name: write-plus
-  description: ''
+  description: 'Temporary dry-run summary table test'
   base-role: write
   permissions:
     - delete_issue
