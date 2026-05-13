@@ -1,6 +1,9 @@
 name: Sync Org Settings
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -11,7 +14,7 @@ on:
       dry-run:
         description: 'Dry run (preview changes without applying)'
         type: boolean
-        default: false
+        default: true
 
 jobs:
   sync:
@@ -28,7 +31,7 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v2
         with:
-          app-id: ${{ secrets.APP_CLIENT_ID }}
+          app-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: joshjohanning-org
 
@@ -66,4 +69,4 @@ jobs:
           readers-can-create-discussions: true
           members-can-view-dependency-insights: true
           display-commenter-full-name-setting-enabled: true
-          dry-run: ${{ inputs.dry-run || 'false' }}
+          dry-run: ${{ github.event_name == 'pull_request' || inputs.dry-run == true }}
