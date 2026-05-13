@@ -39,12 +39,12 @@ jobs:
         uses: joshjohanning/bulk-github-org-settings-sync-action@v1
         with:
           github-token: ${{ steps.app-token.outputs.token }}
-          organizations-file: './orgs.yml'
-          custom-repo-roles-file: './custom-repo-roles.yml'
+          organizations-file: './config/orgs.yml'
+          custom-repo-roles-file: './config/custom-repo-roles.yml'
           actions-policy-allowed-actions: selected
           actions-policy-github-owned-allowed: true
           actions-policy-verified-allowed: true
-          actions-allow-list-file: './actions-allow-list.yml'
+          actions-allow-list-file: './config/actions-allow-list.yml'
           actions-policy-default-workflow-permissions: read
           actions-policy-actions-can-approve-pull-request-reviews: false
           org-description: "@joshjohanning's samples"
