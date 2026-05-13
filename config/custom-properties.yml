@@ -1,0 +1,64 @@
+- name: app_ci
+  value-type: string
+  required: true
+  default-value: 'abc'
+  values-editable-by: org_actors
+
+- name: App_name
+  value-type: single_select
+  required: true
+  default-value: 'b'
+  allowed-values:
+    - b
+    - a
+  values-editable-by: org_actors
+
+- name: business-unit
+  value-type: string
+  required: true
+  default-value: 'abc'
+  values-editable-by: org_and_repo_actors
+
+- name: group-name
+  value-type: single_select
+  required: false
+  allowed-values:
+    - ccs
+    - abc
+  values-editable-by: org_and_repo_actors
+
+- name: project
+  value-type: multi_select
+  required: false
+  allowed-values:
+    - finance
+    - accounting
+    - legal
+    - app dev
+  values-editable-by: org_actors
+
+- name: repo_type
+  value-type: single_select
+  required: false
+  allowed-values:
+    - scripts
+    - testing
+    - demo
+  values-editable-by: org_and_repo_actors
+
+- name: RepoType
+  value-type: single_select
+  required: false
+  allowed-values:
+    - IssueOps
+    - Actions
+    - Other
+  values-editable-by: org_and_repo_actors
+
+- name: test-174-selector
+  value-type: single_select
+  required: false
+  allowed-values:
+    - include
+    - exclude
+  values-editable-by: org_actors

@@ -1,30 +1,16 @@
-# bulk-github-org-settings-sync
+# sync-github-org-settings
 
-Manages GitHub organization settings for `joshjohanning-org` using [bulk-github-org-settings-sync-action](https://github.com/joshjohanning/bulk-github-org-settings-sync-action).
+🔄 Syncs configuration across a set of organizations using the [bulk-github-org-settings-sync-action](https://github.com/joshjohanning/bulk-github-org-settings-sync-action) 🚀
 
-## What's synced
+## How It Works
 
-| Feature | Config |
-|---|---|
-| Member privileges | Inline in workflow |
-| Org profile | Inline in workflow |
-| Actions policy | `config/actions-allow-list.yml` |
-| Custom repo roles | `config/custom-repo-roles.yml` |
+A GitHub Actions workflow runs the sync action, which reads [`orgs.yml`](orgs.yml) and pushes the referenced config files to each listed repository. This keeps org settings in sync and consistent across orgs without manual updates.
 
-## Setup
+Each entry in `orgs.yml` maps a organization to its settings and configuration. Adding a new org or changing a shared config is a single PR in this repo.
 
-The workflow uses a GitHub App for auth. Set these repo-level values:
+## Folder Structure
 
-| Name | Type | Value |
-|---|---|---|
-| `APP_CLIENT_ID` | Variable | App client ID (`Iv1.xxx`) |
-| `APP_PRIVATE_KEY` | Secret | App private key (PEM) |
-
-## Running
-
-The workflow runs automatically:
-- **On push** to `main` (e.g., when you update config files)
-- **Weekly** on Monday at 2am UTC
-- **Manually** via `workflow_dispatch` (with optional dry-run toggle)
-
-To preview changes without applying, use the manual trigger with **Dry run** enabled.
+```text
+orgs.yml                           # List of orgs to sync
+config/                            # Configuration files used by the sync (contents may vary)
+```

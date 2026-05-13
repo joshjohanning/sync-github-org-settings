@@ -1,6 +1,3 @@
-# Custom repository roles for joshjohanning-org
-# Sourced from existing roles via API on initial setup
-
 - name: Security Engineers
   description: ''
   base-role: maintain

@@ -1,0 +1,35 @@
+orgs:
+  - org: joshjohanning-org
+    custom-properties-file: './config/custom-properties.yml'
+    custom-repo-roles-file: './config/custom-repo-roles.yml'
+    actions-allow-list-file: './config/actions-allow-list.yml'
+    actions-policy:
+      allowed-actions: selected
+      github-owned-allowed: true
+      verified-allowed: true
+      default-workflow-permissions: read
+      actions-can-approve-pull-request-reviews: false
+    org-profile:
+      org-description: "@joshjohanning's samples"
+      org-location: 'United States of America'
+      org-blog: 'https://josh-ops.com'
+    member-privileges:
+      default-repository-permission: none
+      members-can-create-repositories: false
+      members-can-create-public-repositories: false
+      members-can-create-private-repositories: false
+      members-can-fork-private-repositories: true
+      web-commit-signoff-required: false
+      members-can-create-pages: true
+      members-can-create-public-pages: true
+      members-can-create-private-pages: true
+      members-can-invite-outside-collaborators: true
+      members-can-create-teams: true
+      members-can-delete-repositories: true
+      members-can-change-repo-visibility: true
+      members-can-delete-issues: true
+      default-repository-branch: main
+      deploy-keys-enabled-for-repositories: true
+      readers-can-create-discussions: true
+      members-can-view-dependency-insights: true
+      display-commenter-full-name-setting-enabled: true
