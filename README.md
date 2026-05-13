@@ -8,17 +8,17 @@ Manages GitHub organization settings for `joshjohanning-org` using [bulk-github-
 |---|---|
 | Member privileges | Inline in workflow |
 | Org profile | Inline in workflow |
-| Actions policy | `actions-allow-list.yml` |
-| Custom repo roles | `custom-repo-roles.yml` |
+| Actions policy | `config/actions-allow-list.yml` |
+| Custom repo roles | `config/custom-repo-roles.yml` |
 
 ## Setup
 
-The workflow uses a GitHub App for auth. Set these secrets on the repo:
+The workflow uses a GitHub App for auth. Set these repo-level values:
 
-| Secret | Value |
-|---|---|
-| `APP_CLIENT_ID` | App client ID (`Iv1.xxx`) |
-| `APP_PRIVATE_KEY` | App private key (PEM) |
+| Name | Type | Value |
+|---|---|---|
+| `APP_CLIENT_ID` | Variable | App client ID (`Iv1.xxx`) |
+| `APP_PRIVATE_KEY` | Secret | App private key (PEM) |
 
 ## Running
 

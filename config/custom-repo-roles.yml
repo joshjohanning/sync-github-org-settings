@@ -1,0 +1,37 @@
+# Custom repository roles for joshjohanning-org
+# Sourced from existing roles via API on initial setup
+
+- name: Security Engineers
+  description: ''
+  base-role: maintain
+  permissions:
+    - delete_alerts_code_scanning
+    - resolve_dependabot_alerts
+    - resolve_secret_scanning_alerts
+    - view_dependabot_alerts
+    - view_secret_scanning_alerts
+
+- name: write-plus
+  description: 'Temporary dry-run summary table test'
+  base-role: write
+  permissions:
+    - delete_issue
+    - manage_settings_wiki
+
+- name: write-minus-action-secrets
+  description: ''
+  base-role: triage
+  permissions:
+    - create_discussion_category
+    - edit_discussion_category
+    - read_code_scanning
+    - resolve_dependabot_alerts
+    - view_dependabot_alerts
+    - write_code_scanning
+
+- name: write-plus-secrets
+  description: 'Basically "Write" with the ability to view and manage secrets'
+  base-role: write
+  permissions:
+    - resolve_secret_scanning_alerts
+    - view_secret_scanning_alerts

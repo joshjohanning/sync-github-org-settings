@@ -1,6 +1,9 @@
 name: Sync Org Settings
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -11,7 +14,7 @@ on:
       dry-run:
         description: 'Dry run (preview changes without applying)'
         type: boolean
-        default: false
+        default: true
 
 jobs:
   sync:
@@ -22,13 +25,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Generate GitHub App Token
         id: app-token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ secrets.APP_CLIENT_ID }}
+          client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: joshjohanning-org
 
@@ -36,15 +39,15 @@ jobs:
         uses: joshjohanning/bulk-github-org-settings-sync-action@v1
         with:
           github-token: ${{ steps.app-token.outputs.token }}
-          organizations-file: './orgs.yml'
-          custom-repo-roles-file: './custom-repo-roles.yml'
+          organizations-file: './config/orgs.yml'
+          custom-repo-roles-file: './config/custom-repo-roles.yml'
           actions-policy-allowed-actions: selected
           actions-policy-github-owned-allowed: true
           actions-policy-verified-allowed: true
-          actions-allow-list-file: './actions-allow-list.yml'
+          actions-allow-list-file: './config/actions-allow-list.yml'
           actions-policy-default-workflow-permissions: read
           actions-policy-actions-can-approve-pull-request-reviews: false
-          org-description: "josh's samples"
+          org-description: "@joshjohanning's samples"
           org-location: 'United States of America'
           org-blog: 'https://josh-ops.com'
           default-repository-permission: none
@@ -66,4 +69,4 @@ jobs:
           readers-can-create-discussions: true
           members-can-view-dependency-insights: true
           display-commenter-full-name-setting-enabled: true
-          dry-run: ${{ inputs.dry-run || 'false' }}
+          dry-run: ${{ github.event_name == 'pull_request' || inputs.dry-run == true }}
