@@ -1,0 +1,28 @@
+# Issue type definitions synced to target organizations
+# See: https://docs.github.com/en/rest/orgs/issue-types
+# Captured from joshjohanning-org current state.
+
+- name: Task
+  description: 'A specific piece of work'
+  color: yellow
+  is_enabled: true
+
+- name: Bug
+  description: 'An unexpected problem or behavior'
+  color: red
+  is_enabled: true
+
+- name: Feature
+  description: 'A request, idea, or new functionality'
+  color: purple
+  is_enabled: true
+
+- name: User Story
+  description: 'A requirement'
+  color: blue
+  is_enabled: true
+
+- name: Epic
+  description: 'A vision'
+  color: orange
+  is_enabled: true

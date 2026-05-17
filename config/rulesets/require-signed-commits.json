@@ -1,0 +1,21 @@
+{
+  "name": "require-signed-commits",
+  "target": "branch",
+  "enforcement": "evaluate",
+  "conditions": {
+    "repository_name": {
+      "exclude": [],
+      "include": ["~ALL"]
+    },
+    "ref_name": {
+      "exclude": [],
+      "include": ["~DEFAULT_BRANCH"]
+    }
+  },
+  "rules": [
+    {
+      "type": "required_signatures"
+    }
+  ],
+  "bypass_actors": []
+}

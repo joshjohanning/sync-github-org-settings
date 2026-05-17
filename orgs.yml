@@ -3,16 +3,35 @@ orgs:
     custom-properties-file: './config/custom-properties.yml'
     custom-repo-roles-file: './config/custom-repo-roles.yml'
     actions-allow-list-file: './config/actions-allow-list.yml'
+    issue-types-file: './config/issue-types.yml'
+    code-security-configurations-file: './config/code-security-configurations.yml'
+    rulesets-file:
+      - './config/rulesets/block-security-checks-updating.json'
+      - './config/rulesets/how-many-prs-without-approval.json'
+      - './config/rulesets/jira-checker.json'
+      - './config/rulesets/no-exe.json'
+      - './config/rulesets/prevent-excluding-secrets.json'
+      - './config/rulesets/require-pr.json'
+      - './config/rulesets/require-signed-commits.json'
+      - './config/rulesets/required-workflow-dependency-review.json'
+      - './config/rulesets/security-checks.json'
     actions-policy:
       allowed-actions: selected
       github-owned-allowed: true
       verified-allowed: true
       default-workflow-permissions: read
       actions-can-approve-pull-request-reviews: false
+    # --- Drift control: uncomment to delete resources not defined in config ---
+    # delete-unmanaged-properties: true
+    # delete-unmanaged-issue-types: true
+    # delete-unmanaged-rulesets: true
+    # delete-unmanaged-code-security-configurations: true
+    # delete-unmanaged-org-roles: true
+    # delete-unmanaged-repo-roles: true
     org-profile:
       org-description: "@joshjohanning's samples"
       org-location: 'United States of America'
-      org-blog: 'https://josh-ops.com'
+      org-url: 'https://josh-ops.com'
     member-privileges:
       default-repository-permission: none
       members-can-create-repositories: false
