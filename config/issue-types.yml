@@ -4,25 +4,25 @@
 
 - name: Task
   description: 'A specific piece of work'
-  color: fbca04
+  color: yellow
   is_enabled: true
 
 - name: Bug
   description: 'An unexpected problem or behavior'
-  color: d73a4a
+  color: red
   is_enabled: true
 
 - name: Feature
   description: 'A request, idea, or new functionality'
-  color: a371f7
+  color: purple
   is_enabled: true
 
 - name: User Story
   description: 'A requirement'
-  color: 0075ca
+  color: blue
   is_enabled: true
 
 - name: Epic
   description: 'A vision'
-  color: ffbf00
+  color: orange
   is_enabled: true
