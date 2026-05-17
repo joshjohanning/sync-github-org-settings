@@ -1,0 +1,48 @@
+{
+  "name": "Required workflow: Dependency Review",
+  "target": "branch",
+  "enforcement": "evaluate",
+  "conditions": {
+    "ref_name": {
+      "exclude": [],
+      "include": ["refs/heads/main"]
+    },
+    "repository_property": {
+      "exclude": [
+        {
+          "name": "visibility",
+          "source": "system",
+          "property_values": ["public"]
+        }
+      ],
+      "include": []
+    }
+  },
+  "rules": [
+    {
+      "type": "workflows",
+      "parameters": {
+        "do_not_enforce_on_create": true,
+        "workflows": [
+          {
+            "repository_id": 597081278,
+            "path": ".github/workflows/dependency-review.yml",
+            "ref": "refs/heads/main"
+          }
+        ]
+      }
+    }
+  ],
+  "bypass_actors": [
+    {
+      "actor_id": null,
+      "actor_type": "OrganizationAdmin",
+      "bypass_mode": "always"
+    },
+    {
+      "actor_id": 5,
+      "actor_type": "RepositoryRole",
+      "bypass_mode": "always"
+    }
+  ]
+}

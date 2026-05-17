@@ -1,0 +1,32 @@
+{
+  "name": "jira-checker",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "repository_id": {
+      "repository_ids": [820921852]
+    },
+    "ref_name": {
+      "exclude": [],
+      "include": ["~ALL"]
+    }
+  },
+  "rules": [
+    {
+      "type": "deletion"
+    },
+    {
+      "type": "non_fast_forward"
+    },
+    {
+      "type": "commit_message_pattern",
+      "parameters": {
+        "operator": "starts_with",
+        "pattern": "ABC-",
+        "negate": false,
+        "name": ""
+      }
+    }
+  ],
+  "bypass_actors": []
+}

@@ -1,0 +1,19 @@
+{
+  "name": "no exe",
+  "target": "push",
+  "enforcement": "evaluate",
+  "conditions": {
+    "repository_id": {
+      "repository_ids": [820921852]
+    }
+  },
+  "rules": [
+    {
+      "type": "file_extension_restriction",
+      "parameters": {
+        "restricted_file_extensions": ["*.exe"]
+      }
+    }
+  ],
+  "bypass_actors": []
+}

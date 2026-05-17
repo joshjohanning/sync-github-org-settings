@@ -1,0 +1,34 @@
+# Code security configurations synced to target organizations
+# Configurations are matched by name (update if exists, create otherwise).
+# Captured from joshjohanning-org current state (org-scoped configs only;
+# enterprise/global configs are managed at a higher level).
+#
+# Skipped: "tes" (appears to be a throwaway test config).
+
+- name: Legacy
+  description: 'Your previous organization settings for new repositories, as of March 2024'
+  advanced_security: enabled
+  dependency_graph: enabled
+  secret_scanning: enabled
+  secret_scanning_push_protection: enabled
+  enforcement: unenforced
+
+- name: Dependabot-only
+  description: 'Dependabot-only'
+  advanced_security: enabled
+  dependency_graph: enabled
+  dependabot_alerts: enabled
+  enforcement: enforced
+
+- name: "Josh's configuration"
+  description: 'sample'
+  advanced_security: enabled
+  dependency_graph: enabled
+  dependabot_alerts: enabled
+  code_scanning_default_setup: enabled
+  secret_scanning: enabled
+  secret_scanning_push_protection: enabled
+  secret_scanning_validity_checks: enabled
+  secret_scanning_extended_metadata: enabled
+  private_vulnerability_reporting: enabled
+  enforcement: enforced

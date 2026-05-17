@@ -1,0 +1,20 @@
+{
+  "name": "Block security checks updating",
+  "target": "push",
+  "enforcement": "active",
+  "conditions": {
+    "repository_name": {
+      "exclude": [],
+      "include": ["repo-rules-security-*"]
+    }
+  },
+  "rules": [
+    {
+      "type": "file_path_restriction",
+      "parameters": {
+        "restricted_file_paths": [".github/workflows/security-checks.yml"]
+      }
+    }
+  ],
+  "bypass_actors": []
+}
